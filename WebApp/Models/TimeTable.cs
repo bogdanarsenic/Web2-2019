@@ -7,5 +7,12 @@ namespace WebApp.Models
 {
     public class TimeTable
     {
+        public int Id { get; set; }
+        public string Type { get; set; }
+
+        public string Day { get; set; }
+
+        public int LineId { get; set; }
+
     }
 }

@@ -18,9 +18,6 @@ namespace WebApp.Persistence.UnitOfWork
         }
 
         [Dependency]
-        public IItemRepository Items { get; set; }
-
-        [Dependency]
         public ITicketRepository Tickets { get; set; }
 
         [Dependency]
