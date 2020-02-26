@@ -8,7 +8,8 @@ import { RegisterComponent } from './register/register.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import {ServicesService} from './services/services.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './interceptors/token.interceptor';
 
 
 const appRoutes:Routes=[
@@ -34,7 +35,7 @@ const appRoutes:Routes=[
     RouterModule.forRoot(appRoutes),
 
   ],
-  providers: [ServicesService],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

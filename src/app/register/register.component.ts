@@ -49,6 +49,7 @@ export class RegisterComponent {
       ]],
       ConfirmPassword:["",[Validators.required]],
       ImageUrl:[""],
+      Type:["", [Validators.required]]
     },
     {
       validator:MatchPassword.MatchPassword
