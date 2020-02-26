@@ -328,7 +328,9 @@ namespace WebApp.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            string id = model.Email.Split('@')[0];
+
+            var user = new ApplicationUser() { Id = id, UserName = model.Email, Email = model.Email, PasswordHash = ApplicationUser.HashPassword(model.Password), Name = model.Name, LastName = model.LastName, DateOfBirth = model.DateOfBirth, Active = false, Address = model.Address, Type = model.Type, ImageUrl = model.ImageUrl };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
@@ -336,6 +338,8 @@ namespace WebApp.Controllers
             {
                 return GetErrorResult(result);
             }
+
+            UserManager.AddToRole(user.Id, "AppUser");
 
             return Ok();
         }
