@@ -57,9 +57,9 @@ export class LoginComponent implements OnInit {
           console.log(role);
           localStorage.setItem('jwt',jwt);
           localStorage.setItem('role',role);
-          localStorage.setItem('currentId',this.login.UserName);
+          localStorage.setItem('currentId',this.login.Username);
           this.router.navigate(['']).then(()=>window.location.reload());
-          this.router.navigateByUrl("/home");
+
 
         },error=>
         {

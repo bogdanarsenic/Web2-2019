@@ -20,7 +20,7 @@ export class ServicesService {
     let headers = new HttpHeaders();
     headers = headers.append('Content-type','application/x-www-form-urlencoded');
 
-    return this.httpClient.post('http://localhost:52295/oauth/token', 'username='+loginUser.UserName+'&password='+loginUser.Password+'&grant_type=password',{"headers": headers});
+    return this.httpClient.post('http://localhost:52295/oauth/token', 'username='+loginUser.Username+'&password='+loginUser.Password+'&grant_type=password',{"headers": headers});
 
   }
 

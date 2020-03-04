@@ -1,39 +1,41 @@
 <nav class="navbar navbar-expand-md bg-dark navbar-dark sticky-top" style="height: 50px">
    
 
-  <!--  <div id="navb" class="navbar-collapse collapse hide">
+  <div id="navb" class="navbar-collapse collapse hide">
       <ul class="navbar-nav" style="margin-left: 180px; font-size: 20px">
         <li class="nav-item">
-          <a style="color: rgb(236, 238, 238)" routerLink="/TimeTable" class="nav-link" >Time Table</a>
+          <a style="color: rgb(236, 238, 238)" routerLink="/timetable" class="nav-link" >Time Table</a>
         </li>
         <li class="nav-item ">
-          <a routerLink="/Map" style="margin-left: 40px;color: rgb(236, 238, 238) " class="nav-link">Lines</a>
+          <a routerLink="/lines" style="margin-left: 40px;color: rgb(236, 238, 238) " class="nav-link">Lines</a>
         </li>
         <li class="nav-item">
-          <a style="margin-left: 40px;color: rgb(236, 238, 238) " routerLink="/Current" class="nav-link" >Current vehicles</a>
+          <a style="margin-left: 40px;color: rgb(236, 238, 238) " routerLink="/vehicles" class="nav-link" >Current vehicles</a>
         </li>
         <li class="nav-item">
-          <a routerLink="/PriceList" style="margin-left: 40px;color: rgb(236, 238, 238)" class="nav-link">Pricelist</a>
+          <a routerLink="/pricelist" style="margin-left: 40px;color: rgb(236, 238, 238)" class="nav-link">Pricelist</a>
         </li>
 
-        <div *ngIf="divCOntroler" style="background-color: rgb(219, 214, 214); opacity: 0.8; margin-top: 10px; margin-left: 0px">
+        <div *ngIf="Controler">
             <li class="nav-item">
-                <a style="margin-left: 40px;color: rgb(236, 238, 238) " routerLink="/Verify" class="nav-link" >Verify</a>
+                <a style="margin-left: 40px;color: rgb(236, 238, 238) " routerLink="/verify" class="nav-link" >Verify</a>
             </li>
-
+        </div>
+        <div *ngIf="Controler">
             <li class="nav-item">
-                <a style="margin-left: 40px;color: rgb(236, 238, 238) " routerLink="/Validate" class="nav-link" >Validate</a>
+                <a style="margin-left: 40px;color: rgb(236, 238, 238) " routerLink="/validate" class="nav-link" >Validate</a>
             </li>
-          </div>
+          
+        </div>
       </ul>
-    -->
+
       <ul class="nav navbar-nav ml-auto" style="margin-right: 20px;">
         <li class="nav-item" style="margin-right: 30px" *ngIf="showLogIn()">
           <a class="nav-link" routerLink="/register"><span class="fas fa-user"></span> Register</a>
         </li>
-   <!--    <li class="nav-item" style="margin-right: 30px" *ngIf="showLogOut()">
-            <a class="nav-link" routerLink="/Edit"><span class="fas fa-user"></span>Edit Profile</a>
-          </li>
+        <li class="nav-item" style="margin-right: 30px" *ngIf="showLogOut()">
+            <a class="nav-link" routerLink="/editprofile"><span class="fas fa-user"></span>Edit Profile</a>
+        </li>
           --> 
         <li class="nav-item" *ngIf="showLogIn()">
           <a class="nav-link" routerLink="/login"><span class="fas fa-sign-in-alt"></span> Login</a>
@@ -42,5 +44,5 @@
           <a class="nav-link" (click)="callLogout()"><span class="fas fa-sign-in-alt"></span>Log out</a>
         </li>
       </ul>
-   <!-- </div>-->
+    </div>
   </nav>
