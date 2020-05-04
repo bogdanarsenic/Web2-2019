@@ -25,9 +25,9 @@ namespace WebApp.Models
         public enum TicketTypes : int
         {
             Temporal,
-            Daily,
-            Monthly,
-            Yearly
+            Day,
+            Month,
+            Year
         }
     }
 }

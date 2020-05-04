@@ -14,14 +14,13 @@ namespace WebApp.Persistence
 
         public DbSet<Ticket> Tickets { get; set; }
         public DbSet<PriceList> PriceLists { get; set; }
-        public DbSet<PriceListItem> PriceListItems { get; set; }
         public DbSet<Station> Stations { get; set; }
         public DbSet<Line> Lines { get; set; }
         public DbSet<StationLine> StationLines { get; set; }
         public DbSet<TimeTable> TimeTables { get; set; }
 
         public ApplicationDbContext()
-            : base("Web2DB", throwIfV1Schema: false)
+            : base("ProjekatJGSP", throwIfV1Schema: false)
         {
         }
         

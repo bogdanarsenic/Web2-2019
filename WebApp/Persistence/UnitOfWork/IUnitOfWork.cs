@@ -9,7 +9,7 @@ namespace WebApp.Persistence.UnitOfWork
 {
     public interface IUnitOfWork : IDisposable
     {
-    
+        
         ITicketRepository Tickets { get; set; }
 
         IStationRepository Stations { get; set; }
@@ -18,7 +18,6 @@ namespace WebApp.Persistence.UnitOfWork
         ILineRepository Lines { get; set; }
         ITimeTableRepository TimeTables { get; set; }
         IPriceListRepository PriceLists { get; set; }
-        IPriceListItemRepository PriceListItems { get; set; }
 
         int Complete();
     }

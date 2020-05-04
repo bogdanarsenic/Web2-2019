@@ -250,22 +250,23 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ApplicationUserController.cs" />
+    <Compile Include="Controllers\ClickController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LineController.cs" />
+    <Compile Include="Controllers\PriceListController.cs" />
+    <Compile Include="Controllers\StationController.cs" />
+    <Compile Include="Controllers\StationLineController.cs" />
+    <Compile Include="Controllers\TicketController.cs" />
+    <Compile Include="Controllers\TimeTableController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201905222056072_InitialMigration.cs" />
-    <Compile Include="Migrations\201905222056072_InitialMigration.Designer.cs">
-      <DependentUpon>201905222056072_InitialMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002251247427_initial.cs" />
-    <Compile Include="Migrations\202002251247427_initial.Designer.cs">
-      <DependentUpon>202002251247427_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002261542100_kontroler.cs" />
-    <Compile Include="Migrations\202002261542100_kontroler.Designer.cs">
-      <DependentUpon>202002261542100_kontroler.cs</DependentUpon>
+    <Compile Include="Hubs\NotificationHub.cs" />
+    <Compile Include="Migrations\202005022119525_initial.cs" />
+    <Compile Include="Migrations\202005022119525_initial.Designer.cs">
+      <DependentUpon>202005022119525_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -274,14 +275,12 @@
     <Compile Include="Models\Enum.cs" />
     <Compile Include="Models\Line.cs" />
     <Compile Include="Models\PriceList.cs" />
-    <Compile Include="Models\PriceListItem.cs" />
     <Compile Include="Models\Station.cs" />
     <Compile Include="Models\StationLine.cs" />
     <Compile Include="Models\Ticket.cs" />
     <Compile Include="Models\TimeTable.cs" />
     <Compile Include="Persistence\ApplicationDbContext.cs" />
     <Compile Include="Persistence\Repository\ILineRepository.cs" />
-    <Compile Include="Persistence\Repository\IPriceListItemRepository.cs" />
     <Compile Include="Persistence\Repository\IPriceListRepository.cs" />
     <Compile Include="Persistence\Repository\IRepository.cs" />
     <Compile Include="Persistence\Repository\IStationLineRepository.cs" />
@@ -289,7 +288,6 @@
     <Compile Include="Persistence\Repository\ITicketRepository.cs" />
     <Compile Include="Persistence\Repository\ITimeTableRepository.cs" />
     <Compile Include="Persistence\Repository\LineRepository.cs" />
-    <Compile Include="Persistence\Repository\PriceListItemRepository.cs" />
     <Compile Include="Persistence\Repository\PriceListRepository.cs" />
     <Compile Include="Persistence\Repository\Repository.cs" />
     <Compile Include="Persistence\Repository\StationLineRepository.cs" />
@@ -303,6 +301,8 @@
     <Compile Include="Providers\CustomJwtFormat.cs" />
     <Compile Include="Providers\CustomOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
+    <Compile Include="Services\IMail.cs" />
+    <Compile Include="Services\Mail.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -396,14 +396,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201905222056072_InitialMigration.resx">
-      <DependentUpon>201905222056072_InitialMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002251247427_initial.resx">
-      <DependentUpon>202002251247427_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002261542100_kontroler.resx">
-      <DependentUpon>202002261542100_kontroler.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202005022119525_initial.resx">
+      <DependentUpon>202005022119525_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -35,8 +35,7 @@ namespace WebApp.Persistence.UnitOfWork
         [Dependency]
         public IPriceListRepository PriceLists { get; set; }
 
-        [Dependency]
-        public IPriceListItemRepository PriceListItems { get; set; }
+      
 
 
         public int Complete()

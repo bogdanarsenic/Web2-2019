@@ -330,7 +330,7 @@ namespace WebApp.Controllers
 
             string id = model.Email.Split('@')[0];
 
-            var user = new ApplicationUser() { Id = id, UserName = model.Email, Email = model.Email, PasswordHash = ApplicationUser.HashPassword(model.Password), Name = model.Name, LastName = model.LastName, DateOfBirth = model.DateOfBirth, Active = false, Address = model.Address, Type = model.Type, ImageUrl = model.ImageUrl };
+            var user = new ApplicationUser() { Id = id, UserName = model.Email, Email = model.Email, PasswordHash = ApplicationUser.HashPassword(model.Password), Name = model.Name, LastName = model.LastName, DateOfBirth = model.DateOfBirth, Active = false, Address = model.Address, Type = model.Type, ImageUrl = model.ImageUrl, Status = model.Status };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 

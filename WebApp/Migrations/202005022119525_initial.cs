@@ -3,10 +3,28 @@ namespace WebApp.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialMigration : DbMigration
+    public partial class initial : DbMigration
     {
         public override void Up()
         {
+            CreateTable(
+                "dbo.Lines",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.PriceLists",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128),
+                        Price = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
             CreateTable(
                 "dbo.AspNetRoles",
                 c => new
@@ -31,10 +49,67 @@ namespace WebApp.Migrations
                 .Index(t => t.RoleId);
             
             CreateTable(
+                "dbo.StationLines",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        StationId = c.Int(nullable: false),
+                        LineId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.Stations",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                        Address = c.String(),
+                        CoordinateX = c.Double(nullable: false),
+                        CoordinateY = c.Double(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.Tickets",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Date = c.DateTime(),
+                        IsValid = c.Boolean(nullable: false),
+                        UserId = c.String(),
+                        Price = c.Int(nullable: false),
+                        TicketType = c.Int(nullable: false),
+                        PaymentID = c.String(),
+                        PaymentToken = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.TimeTables",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128),
+                        Type = c.String(),
+                        Day = c.String(),
+                        LineId = c.String(),
+                        Times = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
                 "dbo.AspNetUsers",
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
+                        Name = c.String(),
+                        LastName = c.String(),
+                        DateOfBirth = c.DateTime(),
+                        Address = c.String(),
+                        Active = c.Boolean(nullable: false),
+                        ImageUrl = c.String(),
+                        Type = c.String(),
+                        Status = c.String(),
                         Email = c.String(maxLength: 256),
                         EmailConfirmed = c.Boolean(nullable: false),
                         PasswordHash = c.String(),
@@ -92,8 +167,14 @@ namespace WebApp.Migrations
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
+            DropTable("dbo.TimeTables");
+            DropTable("dbo.Tickets");
+            DropTable("dbo.Stations");
+            DropTable("dbo.StationLines");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
+            DropTable("dbo.PriceLists");
+            DropTable("dbo.Lines");
         }
     }
 }

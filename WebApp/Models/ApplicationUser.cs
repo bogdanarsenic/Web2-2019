@@ -22,6 +22,7 @@ namespace WebApp.Models
             public bool Active { get; set; }
             public string ImageUrl { get; set; }
             public string Type { get; set; }
+            public string Status { get; set; }
 
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)

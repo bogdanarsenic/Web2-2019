@@ -12,6 +12,7 @@ namespace WebApp.Models
         public DateTime? Date { get; set; }
         public bool IsValid { get; set; }
         public string UserId { get; set; }
+        public int Price { get; set; }
         public TicketTypes TicketType { get; set; }
         public string PaymentID { get; set; }
         public string PaymentToken { get; set; }
