@@ -1,1 +1,84 @@
-<p>validate works!</p>
+
+<div class="main">
+
+        <h3>
+            Check if the ticket is valid:
+        </h3>
+
+        <input type="number" style="text-align: center;margin-top: 10px; margin-left: 175px;" #param>
+        <div>
+            <a class="btn btn-lg btn-block btn-danger" style="color:#f4f4f4" (click)="Valid(param.value)">Check </a>
+        </div>
+
+
+        <div *ngIf="show">
+    <table class="table table-striped table-dark">
+        <thead>
+                <tr>
+
+        
+                <th>
+                User ID
+                </th>
+                <th>
+                Type
+                </th>
+                <th>
+                Date
+                </th>
+
+                <th>
+                        Price
+                </th>
+
+                <th>
+                    Valid
+                </th>
+                </tr>
+
+        </thead>
+
+        <tbody>
+                <tr>
+                        <td>
+                                {{ticket.UserId}}
+                        </td>
+
+                        <td *ngIf="ticket.TicketType=='0'">
+                                Temporal
+                        </td>
+
+                        <td *ngIf="ticket.TicketType=='1'">
+                            Day
+                        </td>
+
+                        <td *ngIf="ticket.TicketType=='2'">
+                            Month
+                         </td>
+
+                        <td *ngIf="ticket.TicketType=='3'">
+                            Year
+                        </td>
+
+                        <td>
+                                {{ticket.Date}}
+                        </td>
+
+                        <td>
+                                {{ticket.Price}}
+                        </td>
+
+                        <td *ngIf="ticket.IsValid" style="color: green;">
+                            {{ticket.IsValid}}
+                        </td>
+
+                        <td *ngIf="!ticket.IsValid" style="color: red;">
+                            {{ticket.IsValid}}
+                        </td>
+                </tr>
+        </tbody>
+    </table>
+
+        </div>
+
+</div>

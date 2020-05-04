@@ -21,6 +21,14 @@ import {CanActivateViaControllerGuard} from './guards/controller.guard';
 import { EditprofileComponent } from './editprofile/editprofile.component';
 import { PricelistComponent } from './pricelist/pricelist.component';
 import { MapComponent } from './map/map.component';
+import {AgmCoreModule} from '@agm/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ModalComponent } from './modal/modal.component';
+import { NotificationService } from './services/notification.service';
+import { HttpClickService } from './services/click-http.service';
 
 
 const appRoutes:Routes=[
@@ -49,6 +57,9 @@ const appRoutes:Routes=[
     VerifyComponent,
     EditprofileComponent,
     MapComponent,
+    PricelistComponent,
+    ModalComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -56,13 +67,23 @@ const appRoutes:Routes=[
     HttpClientModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
+    AgmCoreModule.forRoot({apiKey: 'AIzaSyDnihJyw_34z5S1KZXp90pfTGAqhFszNJk'}),
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatDialogModule,
+
 
   ],
   providers: [
     CanActivateViaAdminGuard,
     CanActivateViaControllerGuard,
     CanActivateViaUserGuard,
-    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}],
+
+    NotificationService,
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
+    HttpClickService
+    ],
+    
   bootstrap: [AppComponent]
 })
 export class AppModule { }

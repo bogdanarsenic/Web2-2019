@@ -1,1 +1,88 @@
-<p>verify works!</p>
+<div class="containter">
+
+    <table class="table table-striped table-dark">
+        <thead>
+                <tr>
+
+        
+                <th>
+                User ID
+                </th>
+                <th>
+                Name
+                </th>
+                <th>
+                LastName
+                </th>
+
+                <th>
+                 Email
+                </th>
+
+                <th>
+                Address
+                </th>
+                <th>
+                Type
+                </th>
+
+                <th>
+                 Proof
+                </th>
+                </tr>
+
+        </thead>
+
+        <tbody *ngFor="let user of unapprovedUsers">
+                <tr>
+                        <td>
+                                {{user.Id}}
+                        </td>
+
+                        <td>
+                            {{user.Name}}
+                        </td>
+
+                        <td>
+                            {{user.LastName}}
+
+                        </td>
+
+                        <td>
+                            {{user.Email}}
+
+                        </td>
+
+                        <td>
+                            {{user.Address}}
+
+                        </td>
+
+                        <td>
+                            {{user.Type}}
+
+                        </td>
+
+                        <td>
+                            {{user.ImageUrl}}
+
+                        </td>
+
+                        <td>
+                            <button class="btn" (click)="approveUser(user)" style="background-color:green;color:#f4f4f4">
+                                    Approve
+                            </button>
+                        </td>
+
+                        <td>
+                            <button class="btn" (click)="refuseUser(user)" style="background-color:red;color:#f4f4f4">
+                                Refuse
+                            </button>
+
+                        </td>
+                    
+                </tr>
+        </tbody>
+    </table>
+
+</div>

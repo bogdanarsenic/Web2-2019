@@ -1,1 +1,163 @@
-<p>timetable works!</p>
+
+      <div *ngIf="isAdmin">
+
+        <table>
+
+            <tr>
+
+                <td>
+
+               
+                <select (click)="checkDay($event.target.value)">
+                    <option disabled selected value> -- select a day -- </option>
+                    <option *ngFor="let day of days" > {{day}} </option>
+                </select>
+                </td>
+            </tr>
+
+
+
+         <div *ngIf="checked">
+                    
+               <tr>
+
+                <td>
+
+               
+                <select (click)="onItemChange($event.target.value)"> 
+                    <option disabled selected value> -- select a line -- </option>
+                    <option [value]="line" *ngFor="let line of lineNames">   {{line}}</option>
+                </select>
+                 </td>
+             </tr>
+        </div>  
+        
+                <div *ngIf="edit">
+                    <tr>
+
+                        <span> Timetable for selected line: </span>
+                    <td class="bg-warning"> {{times}}</td>
+                     </tr>
+                </div>
+
+        </table>
+       <form [formGroup]="timetableForm" (submit)="onSubmit()">
+
+           <table *ngFor="let j of broj">
+                <tr>
+                    <td width="200px">
+                        {{j}}h
+                    </td>
+                    <td>
+                        <input type="text" formControlName="{{j}}"/>
+                    </td>
+                </tr>
+            </table>
+
+            <div *ngIf="!edit" class="col text-center">
+
+            
+            <button class="btn btn-default"  type="submit" [disabled]="provera === 0"> Add timetable for this line
+                </button>
+            </div>
+
+            <div *ngIf="edit" class="col text-center">
+
+                
+                <button class="btn btn-default"  *ngIf="edit" type="submit" [disabled]="provera === 0"> Edit timetable for this line
+                </button>
+
+                <button class="btn btn-default"  *ngIf="edit" (click)="Delete()">
+                    Delete
+                </button>
+            </div>
+
+        </form>
+
+      
+    </div> 
+
+
+    <div *ngIf="!isAdmin">
+   
+           <form >
+            <table class="table table-hover table-grey">
+                <tr>
+                    <td>        
+                        <input type="radio" name="line" value="City lines" (click)="onCity()"/>
+                        <span> City line</span>
+                    </td>
+
+                    <td>        
+                        <input type="radio" name="line" value="Suburban lines" (click)="onSuburban()"/>
+                        <span> Suburban line</span>
+                    </td>   
+                 </tr>
+                
+                <tr>
+
+                    <td >        
+                        <select *ngIf="suburban || city" (click)="checkDay($event.target.value)">
+                            <option disabled selected value> -- select a day -- </option>
+                            <option *ngFor="let day of days" > {{day}} </option>
+                        </select>
+                    </td>
+                 </tr>
+
+            <div *ngIf="city && daychecked"> 
+                <tr>    
+                    <td >         
+                            <select (click)="onItemChange($event.target.value)">
+                                <option disabled selected value> -- select a line -- </option>
+                                <option *ngFor="let line of cityLines" > {{line}} </option>      
+                            </select>
+                     </td>
+                 </tr>
+            </div>
+
+            <div *ngIf="suburban && daychecked">
+                <tr> 
+                    <td >
+                        <select (click)="onItemChange($event.target.value)">
+                            <option disabled selected value> -- select a line -- </option>
+                            <option *ngFor="let line of subLines"> {{line}} </option>      
+                        </select>                       
+                    </td>   
+                </tr>
+            </div>
+        </table>
+            
+        </form>
+        
+        <div class="col text-center">     
+            <button class="btn btn-default" (click)="Show()"> Show timetable</button>
+         </div>
+
+        <div class="boldovan" *ngIf="showTT">
+            <b> Line: {{id}} </b>
+                <table>
+
+                    <th>
+                        Hours
+                    </th>
+
+                    <th>
+                        Minutes
+                    </th>
+                    
+                   <tr *ngFor="let h of hours ; let i = index">
+                       <td>
+                          {{hours[i]}}
+                       </td>
+                       <td>
+                           {{minutes[i]}}
+                       </td>
+                   </tr>
+           
+                </table>
+        </div>
+    
+    </div>
+
+
+    

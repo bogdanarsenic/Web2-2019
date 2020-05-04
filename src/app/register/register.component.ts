@@ -28,6 +28,7 @@ export class RegisterComponent {
   selectedFile :any;
   localUrl: any[];
   imageShow : any;
+  
   constructor (private fb:FormBuilder,private registerService:ServicesService, private router:Router){
     this.createForm();
   }
@@ -35,7 +36,7 @@ export class RegisterComponent {
   createForm()
   {
     this.registerUserForm=this.fb.group({
-      Name: ["",[Validators.required,Validators.minLength(4)]],
+      Name: ["",[Validators.required]],
       LastName:['',Validators.required],
       DateOfBirth:['',Validators.required],
       Email:["", [Validators.email, Validators.required]],
@@ -82,6 +83,7 @@ export class RegisterComponent {
       this.user.DateOfBirth = this.registerUserForm.value.DateOfBirth;
       this.user.ImageUrl = this.image;
       this.user.Type = this.registerUserForm.value.Type;
+      this.user.Status="InProgress";
 
       this.Registrate(this.user);
     }

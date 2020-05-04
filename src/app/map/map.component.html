@@ -1,1 +1,122 @@
-<p>map works!</p>
+
+<body>
+
+      
+      <label>
+        Lines:
+      </label>
+      <div *ngFor="let line of lineNames">
+        <ul>
+
+          <input type="radio" id="one" [(ngModel)]="radioSelected" name="lineCity" value="{{line}}" (click)="onItemChange(line)" />
+          <label for="radio1">{{line}}</label>
+
+        </ul>
+      </div>
+
+      <div style="margin-top: 50px; margin-left:0px;display: flex">
+        <!-- Kreiramo mapu -->
+        <agm-map [latitude]="markerInfo.location.latitude" [longitude]="markerInfo.location.longitude" [zoom]="15" (mapClick)="placeMarker($event)" >  
+
+
+          <agm-marker [latitude]="markerInfo.location.latitude" [longitude]="markerInfo.location.longitude" [title]="markerInfo.title"
+          [label]="markerInfo.label" [iconUrl]="markerInfo.iconUrl">
+      
+            <!-- Svakom markeru dodajemo info-window (Nije obavezno!)-->
+            <agm-info-window [latitude]="markerInfo.location.latitude" [longitude]="markerInfo.location.longitude" >
+      
+              <!-- U info-window stavljamo html -->
+              <span style="font-size: 16px;font-family:'Times New Roman'"></span>
+              <br/>
+              <span style="font-family:'Times New Roman'; color:gray;"><strong></strong></span>
+              <span style="font-family:'Times New Roman'; color:gray;"></span>
+              <a [href]="markerInfo.link"> </a>
+            </agm-info-window>
+      
+          </agm-marker>
+      
+          <agm-polyline [strokeColor]="polyline.color">
+              <agm-polyline-point *ngFor="let point of polyline.path" [latitude]="point.latitude" [longitude]="point.longitude">
+              </agm-polyline-point>
+          </agm-polyline>
+      
+          <agm-marker (markerClick)="clickedMarker(point)" *ngFor="let point of polyline.path" [latitude]="point.latitude"
+          [longitude]="point.longitude" [iconUrl]="polyline.icon">
+          <agm-info-window [latitude]="markerInfo.location.latitude" [longitude]="markerInfo.location.longitude">
+  
+            <!-- U info-window stavljamo html -->
+            <span style="font-size: 16px;font-family:'Times New Roman'">Address : {{stationClicked.Address}}</span>
+            <br />
+            <span style="font-family:'Times New Roman'; color:gray;">Lines: {{stationClicked.LineId}}</span>
+          </agm-info-window>
+          </agm-marker>
+      
+        </agm-map>
+
+
+        <div *ngIf="edit">
+            <form #f="ngForm" enctype="multipart/form-data" (ngSubmit)="UpdateLine()" ngNativeValidate>
+              <label style="margin-left: 220px; font-size: 18px">Line</label><br />
+              <i style="font-size: 18px;">Name:</i>
+              <span class="inlineinput">
+                <input type="text" id="name" style='display: inline-block;width: 150px;height: 25px;' name="fname" [(ngModel)]="lineEdit.Name">
+              </span>
+        
+              <span class="inlineinput">
+                <input type="submit" class="submit1" value="Change" style='display: inline-block;' id="dir">
+              </span>
+            </form>
+          </div>
+          <div *ngIf="editStation && showAdmin">
+            <form #f="ngForm" enctype="multipart/form-data" (ngSubmit)="UpdateStation()" ngNativeValidate>
+              <label style="margin-left: 210px;margin-top: 30px; font-size: 18px">Station</label><br />
+              <label style="margin-left: 5px; margin-top:10px">
+                Name:
+                <input type="text" style='width: 528px;height: 25px; margin-left: 0px' name="names" [(ngModel)]="stationEdit.Name">
+              </label>
+              <label style="margin-left: 5px; margin-top:10px">
+                Address:
+                <input type="text" style='width: 528px;height: 25px;margin-left: 0px' name="add" [(ngModel)]="stationEdit.Address">
+              </label>
+              <label style="margin-left: 5px; margin-top:10px">
+                Coordinate X:
+                <input type="text" style='width: 528px;height: 25px;margin-left: 0px' name="cooX" [(ngModel)]="stationEdit.CoordinateX">
+              </label>
+              <label style="margin-left: 5px; margin-top:10px">
+                Coordinate Y:
+                <input type="text" name="cooY" style='width: 528px;height: 25px;margin-left: 0px' [(ngModel)]="stationEdit.CoordinateY">
+              </label> <br>
+              <input type="submit" id="dir" value="Change">
+            </form>
+            <button (click)="deleteStation()" type="button">Delete station</button>
+          </div>
+
+      </div>
+
+
+   <div *ngIf="showAdmin"
+      style="background-color: rgb(219, 214, 214); opacity: 0.8; margin-top: 10px; margin-left: 0px">
+      <button  (click)="Edit()" type="button">Edit</button>
+      <button (click)="openModal('custom-modal-2')" type="button"> Add Line</button>
+      <button  (click)="deleteLine()" type="button"> Delete Line</button>
+    </div>
+ 
+  <jw-modal id="custom-modal-1">
+    <h1 style="color: red; font-size:16;font-style:bold;margin-left:200px">Creating new station</h1>
+    <p style="font-size: 200%;font-family:'Times New Roman', Times, serif; margin-top: 20px ">Name: 
+      <input style="width: 50%;" type="text" [(ngModel)]="bodyText"  /></p>
+    <button (click)="closeModal('custom-modal-1');">Close</button>
+    <button (click)="save()">Save</button>
+  </jw-modal>
+
+  <jw-modal id="custom-modal-2">
+    <h1 style="color: red; font-size:16;font-style:bold;margin-left:200px">Creating new line</h1>
+    <p style="font-size: 200%;font-family:'Times New Roman', Times, serif; margin-top: 20px ">Name: 
+      <input style="width: 50%;" type="text" [(ngModel)]="bodyText1" />
+    </p>
+    <button (click)="closeModal('custom-modal-2');">Close</button>
+    <button (click)="createLine()">Create</button>
+  </jw-modal>
+
+
+</body>

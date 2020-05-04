@@ -1,1 +1,186 @@
-<p>editprofile works!</p>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+	<title>Booking Form HTML Template</title>
+
+	<!-- Google font -->
+
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+</head>
+
+
+
+<body>
+
+    <div id="booking" class="section">
+
+      <div class="section-left">
+          <h2>
+             Your status:
+          </h2>  
+         <h3 *ngIf="status=='InProgress'" style="color:yellow"> 
+              {{status}}
+         </h3>
+
+         <h3 *ngIf="status=='Approved'" style="color:green"> 
+            {{status}}
+         </h3>
+
+         <h3 *ngIf="status=='Denied'" style="color:red"> 
+          {{status}}
+         </h3>
+          
+         
+      </div>
+
+        <div class="section-center">
+            <div class="booking-form">
+                <form [formGroup]="registerUserForm" (submit)="onSubmit()" novalidate>
+                  <h3 class="register"> REGISTER:</h3>
+
+                    <div class="form-group">
+                        <span class="form-label"> Name: </span>
+                        <input class="form-control" type="text" name="Name" [(ngModel)]="user.Name" value="{{user.Name}}" id="Name" formControlName="Name" placeholder="Name">
+                        <div *ngIf="f.Name.invalid && (f.Name.dirty || f.Name.touched)">
+                            <div class="text-danger" *ngIf="f.Name.errors.required">
+                              Name is Required!
+                            </div>
+                          </div>
+                    </div>
+
+                    <div class="form-group">
+                        <span class="form-label">Last Name: </span>
+                        <input class="form-control" type="text" name="LastName" [(ngModel)]="user.LastName" value="{{user.LastName}}" id="LastName" formControlName="LastName" placeholder="Last Name">
+                        <span *ngIf="registerUserForm.controls.LastName.touched">
+                                <small *ngIf="registerUserForm.controls.LastName.errors?.required">
+                                        <div class="attent">
+                                                Lastname is required!
+                                        </div>
+                                </small>
+                            </span>
+                    </div>
+
+
+                    <div class="form-group">
+                        <span class="form-label">Date of Birth: </span>
+                        <input class="form-control" type="date" name="DateOfBirth" [(ngModel)]="user.DateOfBirth" value="{{user.DateOfBirth}}" id="DateOfBirth" formControlName="DateOfBirth" placeholder="Date of Birth">
+                        <span *ngIf="registerUserForm.controls.DateOfBirth.touched">
+                                <small *ngIf="registerUserForm.controls.DateOfBirth.errors?.required">
+                                        <div class="attent">
+                                                Date of birth is required!
+                                        </div>
+                                </small>
+                            </span>
+                    </div>
+                    
+
+                    <div class="form-group">
+                        <span class="form-label"> Email: </span>
+                        <input class="form-control" name="Email" [(ngModel)]="user.Email" value="{{user.Email}}" id="Email" formControlName="Email" placeholder="Email">
+                        <div *ngIf="f.Email.invalid && (f.Email.dirty || f.Email.touched)">
+                            <div class="text-danger" *ngIf="f.Email.errors.required">
+                                Email is Required!
+                            </div>
+                            <div class="text-danger" *ngIf="f.Email.errors.email">
+                              Must have @ !
+                            </div>
+                          </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <span class="form-label"> Password: </span>
+                        <input class="form-control" type="password" name="Password" [(ngModel)]="user.Password" value="{{user.Password}}" id="Password" formControlName="Password" placeholder="Password">
+                        <div *ngIf="f.Password.invalid && (f.Password.dirty || f.Password.touched)">
+                            <div class="text-danger" *ngIf="f.Password.errors.required">
+                                Password is Required!
+                            </div>
+                            <div class="text-danger" *ngIf="f.Password.errors.minlength">
+                                Must have 8 characters!
+                              </div>
+                              <div class="text-danger" *ngIf="f.Password.errors.hasNumber">
+                                Must have number!
+                              </div>
+                              <div class="text-danger" *ngIf="f.Password.errors.hasCapitalCase">
+                                Must have Capitala Case!
+                              </div>
+                              <div class="text-danger" *ngIf="f.Password.errors.hasSmallCase">
+                                Must have Small Case!
+                              </div>
+                              <div class="text-danger" *ngIf="f.Password.errors.hasSpecialCharacters">
+                                Must have Special Character!
+                              </div>
+                          </div>
+                    </div>
+
+                    <div class="form-group">
+                        <span class="form-label"> Confirm Password: </span>
+                        <input class="form-control" type="password" name="ConfirmPassword" [(ngModel)]="user.ConfirmPassword" value="{{user.ConfirmPassword}}" id="ConfirmPassword" formControlName="ConfirmPassword" placeholder="ConfirmPassword">
+                        <div *ngIf="f.ConfirmPassword.invalid && (f.ConfirmPassword.dirty || f.ConfirmPassword.touched)">
+                            <div class="text-danger" *ngIf="f.ConfirmPassword.errors.required">
+                                ConfirmPassword is Required!
+                            </div>
+                            <div class="text-danger" *ngIf="f.ConfirmPassword.errors?.MatchPassword">Password not match </div>
+                            <div class="text-danger">Password not matched!</div>
+
+                          </div>
+                    </div>
+
+                    <div class="form-group">
+                        <span class="form-label">Address: </span>
+                        <input class="form-control" type="text" name="Address" [(ngModel)]="user.Address" value="{{user.Address}}" id="Address" formControlName="Address" placeholder="Address">
+                        <span *ngIf="registerUserForm.controls.Address.touched">
+                                <small *ngIf="registerUserForm.controls.Address.errors?.required">
+                                        <div class="attent">
+                                            Address is required!
+                                        </div>
+                                </small>
+                            </span>
+                    </div>
+
+
+                    <div class="form-group">
+                        <span class="form-label">Type: </span>
+
+                          <select  placeholder="Type of user" [(ngModel)]="user.Type" value="{{user.Type}}"  id="Type" formControlName="Type" required>
+                            <option value="Regular">Regular</option>
+                            <option value="Student">Student</option>
+                            <option value="Pensioner">Pensioner</option>
+                          </select>
+                          <div *ngIf="f.Type.invalid && (f.Type.dirty || f.Type.touched)">
+                            <div class="text-danger" *ngIf="f.Type.errors.required">
+                              Type is Required!
+                            </div>
+                          </div>
+                      </div>
+
+
+                    <div class="form-group">
+                        <span class="form-label">Image: </span>
+                          <input type="file" id="ImageUrl" [(ngModel)]="user.ImageUrl" value="{{user.ImageUrl}}" formControlName="ImageUrl">
+                      </div>
+
+                    <div class="form-btn">
+                        <button class="submitbutton" type="submit"  [disabled]="registerUserForm.invalid"> Edit
+                        </button>
+                      </div>
+                           
+                </form>
+              </div>
+        </div>
+    </div>
+</body>
+</html>

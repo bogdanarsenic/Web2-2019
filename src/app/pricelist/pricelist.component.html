@@ -1,1 +1,262 @@
-<p>pricelist works!</p>
+
+<div class="main" style="height: 1000px;"> 
+        <div class="divcontainer">
+
+        <h2 style="margin-left:330px"> Ticket Price: </h2>
+        <div class="hour"> 
+                <h3>Hour</h3> 
+
+                        <p class="divp">
+                                {{priceTemporal}} din
+                        </p>
+
+                           <form>
+                                        <div class="form-check">
+                                                <label class="form-check-label" style="color:#f4f4f4">
+                                                <input type="radio" class="form-check-input" (click)="onRegularTemporal()" name="radiobuttons">Regular
+                                                </label>
+                                        </div>
+                                        <div class="form-check">
+                                                <label class="form-check-label" style="color:#f4f4f4">
+                                                <input type="radio" [disabled]="isDisabledStudent() || isAdmin()" (click)="onStudentTemporal()"  class="form-check-input" name="radiobuttons">Student
+                                                </label>
+                                        </div>
+                                        <div class="form-check">
+                                                <label class="form-check-label" style="color:#f4f4f4">
+                                                        <input type="radio" [disabled]="isDisabledPensioner() || isAdmin()" (click)="onPensionerTemporal()"  class="form-check-input" name="radiobuttons">Pensioner
+                                                </label>
+                                        </div>
+
+                                        <div *ngIf="buyButton">
+                                                <a class="btn btn-lg btn-block btn-danger" style="color:#f4f4f4" (click)="BuyTemporal()">BUY</a>
+                                        </div>
+                                         <div *ngIf="showEditT">
+                                                 <input type="number"  #param>
+                                                 <div>
+                                                        <a class="btn btn-lg btn-block btn-danger" style="color:#f4f4f4" (click)="EditTemporal(param.value)">EDIT</a>
+                                                </div>
+                                         </div>
+
+                                         <div *ngIf="showAddT">
+                                                <input type="number"  #param>
+                                                <div>
+                                                  <a class="btn btn-lg btn-block btn-danger" style="color:#f4f4f4" (click)="AddTemporal(param.value)"> ADD </a>
+ 
+                                                </div>
+                                         </div>
+                       
+                         </form>
+         </div>
+
+        
+        <div class="day">
+
+                   <h3> Day</h3>
+
+                   <p class="divp">
+                        {{priceDay}} din
+                   </p>
+
+                   <form>
+                        <div class="form-check">
+                                <label class="form-check-label" style="color:#f4f4f4">
+                                <input type="radio" class="form-check-input" name="radiobuttons" (click)="onRegularDay()">Regular
+                                </label>
+                        </div>
+                        <div class="form-check">
+                                <label class="form-check-label" style="color:#f4f4f4">
+                                <input type="radio" [disabled]="isDisabledStudent() || isAdmin()" (click)="onStudentDay()" class="form-check-input" name="radiobuttons">Student
+                                </label>
+                        </div>
+                        <div class="form-check">
+                                <label class="form-check-label" style="color:#f4f4f4">
+                                        <input type="radio" [disabled]="isDisabledPensioner() || isAdmin()" (click)="onPensionerDay()" class="form-check-input" name="radiobuttons">Pensioner
+                                </label>
+                        </div>
+
+                        <div *ngIf="buyButton">
+                                <a class="btn btn-lg btn-block btn-danger" style="color:#f4f4f4" (click)="BuyDay()">BUY</a>
+                        </div>
+                         <div *ngIf="showEditD">
+                                 <input type="number"  #param>
+                                 <div>
+                                        <a class="btn btn-lg btn-block btn-danger" style="color:#f4f4f4" (click)="EditDay(param.value)">EDIT</a>
+                                </div>
+                         </div>
+
+                         <div *ngIf="showAddD">
+                                <input type="number"  #param>
+                                <div>
+                                  <a class="btn btn-lg btn-block btn-danger" style="color:#f4f4f4" (click)="AddDay(param.value)"> ADD </a>
+
+                                </div>
+                         </div>
+       
+         </form>
+
+        </div>
+
+        <div class="month">
+                <h3>Month</h3>
+
+                <p class="divp">
+                        {{priceMonth}} din
+                   </p>
+
+                   <form>
+                        <div class="form-check">
+                                <label class="form-check-label" style="color:#f4f4f4">
+                                <input type="radio" class="form-check-input" name="radiobuttons" (click)="onRegularMonth()">Regular
+                                </label>
+                        </div>
+                        <div class="form-check">
+                                <label class="form-check-label" style="color:#f4f4f4">
+                                <input type="radio" [disabled]="isDisabledStudent() || isAdmin()" (click)="onStudentMonth()" class="form-check-input" name="radiobuttons">Student
+                                </label>
+                        </div>
+                        <div class="form-check">
+                                <label class="form-check-label" style="color:#f4f4f4">
+                                        <input type="radio" [disabled]="isDisabledPensioner() || isAdmin()" (click)="onPensionerMonth()" class="form-check-input" name="radiobuttons">Pensioner
+                                </label>
+                        </div>
+
+                        <div *ngIf="buyButton">
+                                <a class="btn btn-lg btn-block btn-danger" style="color:#f4f4f4" (click)="BuyMonth()">BUY</a>
+                        </div>
+
+                         <div *ngIf="showEditM">
+                                 <input type="number"  #param>
+                                 <div>
+                                        <a class="btn btn-lg btn-block btn-danger" style="color:#f4f4f4" (click)="EditMonth(param.value)">EDIT</a>
+                                </div>
+                         </div>
+
+                         <div *ngIf="showAddM">
+                                <input type="number"  #param>
+                                <div>
+                                  <a class="btn btn-lg btn-block btn-danger" style="color:#f4f4f4" (click)="AddMonth(param.value)"> ADD </a>
+
+                                </div>
+                         </div>
+       
+         </form>
+        </div>
+
+         <div class="year">
+                        <h3>Year</h3>
+                        <p class="divp">
+                                {{priceYear}} din
+                         </p>
+                         <form>
+                                <div class="form-check">
+                                        <label class="form-check-label" style="color:#f4f4f4">
+                                        <input type="radio" class="form-check-input" name="radiobuttons" (click)="onRegularYear()">Regular
+                                        </label>
+                                </div>
+                                <div class="form-check">
+                                        <label class="form-check-label" style="color:#f4f4f4">
+                                        <input type="radio" [disabled]="isDisabledStudent() || isAdmin()" class="form-check-input" name="radiobuttons" (click)="onStudentYear()">Student
+                                        </label>
+                                </div>
+                                <div class="form-check">
+                                        <label class="form-check-label" style="color:#f4f4f4">
+                                                <input type="radio" [disabled]="isDisabledPensioner() || isAdmin()" class="form-check-input" name="radiobuttons" (click)="onPensionerYear()">Pensioner
+                                        </label>
+                                </div>
+
+                                <div *ngIf="buyButton">
+                                        <a class="btn btn-lg btn-block btn-danger" style="color:#f4f4f4" (click)="BuyYear()">BUY</a>
+                                </div>
+        
+                                 <div *ngIf="showEditY">
+                                         <input type="number" #param>
+                                         <div>
+                                                <a class="btn btn-lg btn-block btn-danger" style="color:#f4f4f4" (click)="EditYear(param.value)">EDIT</a>
+                                        </div>
+                                 </div>
+        
+                                 <div *ngIf="showAddY">
+                                        <input type="number" #param>
+                                        <div>
+                                          <a class="btn btn-lg btn-block btn-danger" style="color:#f4f4f4" (click)="AddYear(param.value)"> ADD </a>
+        
+                                        </div>
+                                 </div>
+               
+                 </form>
+          </div>
+
+          <div *ngIf="isActive()">
+                <a class="btn btn-primary" style="margin-top: 20px; margin-left:330px; color:#f4f4f4;" (click)="showTickets()">Show my tickets</a>
+          </div>
+
+          
+        </div>
+
+        <div *ngIf="isActive()">
+
+
+        </div>
+
+        <div #paypal>
+
+        </div>
+        <div *ngIf="buttonTicket">
+        <table class="table table-striped table-dark">
+                <thead>
+                        <tr>
+
+                
+                        <th>
+                        User ID
+                        </th>
+                        <th>
+                        Type
+                        </th>
+                        <th>
+                        Date
+                        </th>
+
+                        <th>
+                                Price
+                        </th>
+                        </tr>
+
+                </thead>
+
+                <tbody>
+                        <tr *ngFor="let t of ticketsByUser">
+                                <td>
+                                        {{t.UserId}}
+                                </td>
+
+                                <td *ngIf="t.TicketType == 0">
+                                Temporal
+                                </td>
+                                <td *ngIf="t.TicketType == 1">
+                                Day
+                                </td>
+                                <td *ngIf="t.TicketType == 2">
+                                Month
+                                </td>
+                                <td *ngIf="t.TicketType == 3">
+                                Year
+                                </td>
+
+                                <td>
+                                        {{t.Date}}
+                                </td>
+
+                                <td>
+                                        {{t.Price}}
+                                </td>
+                        </tr>
+                </tbody>
+        </table>
+        </div>
+  
+</div>
+  
+
+                
+

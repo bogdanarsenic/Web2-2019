@@ -1,1 +1,28 @@
-<p>vehicles works!</p>
+<div class="container-fluid">
+    <div style="background-color: rgb(219, 214, 214); opacity: 0.8; margin-top: 10px; margin-left: 0px">
+      <h1 style="color:rgb(13, 102, 114)" class="text-center">Current vehicles</h1>
+  
+    </div>
+  
+    <div style="height: 25px; width: 1510px;background-color: rgb(187, 184, 184); opacity: 0.8;margin-top: 10px; margin-left: 0px">
+    <div style="background-color: rgb(187, 184, 184); opacity: 0.8; margin-top: 0px; margin-left: 20px" class="inline"
+      *ngFor="let line of lineNames">
+      <input type="radio" id="one" [(ngModel)]="radioSelected" name="lineCity" value="{{line}}"
+        (change)="onItemChange1(line)" unchecked />
+      <label for="radio1">{{line}}</label>
+    </div>
+  
+  </div>
+    <div style="margin-top: 50px; margin-left:0px;display: flex">
+      <!-- Kreiramo mapu -->
+      <agm-map id="map" [latitude]="markerInfo.location.latitude" [longitude]="markerInfo.location.longitude" [zoom]="15">
+  
+        <agm-marker  latitude="{{latMarker}}" longitude="{{longMarker}}" [iconUrl]="polyline.icon">
+        
+      </agm-marker>
+  
+      </agm-map>
+  
+      </div>
+  
+  </div>
