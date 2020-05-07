@@ -14,6 +14,8 @@ namespace WebApp.Models
         public string UserId { get; set; }
         public int Price { get; set; }
         public TicketTypes TicketType { get; set; }
+        public string OrderID { get; set; }
+        public string PayerID { get; set; }
         public string PaymentID { get; set; }
         public string PaymentToken { get; set; }
     }

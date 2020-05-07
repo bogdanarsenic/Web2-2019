@@ -268,6 +268,10 @@
     <Compile Include="Migrations\202005022119525_initial.Designer.cs">
       <DependentUpon>202005022119525_initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005041616045_paypal.cs" />
+    <Compile Include="Migrations\202005041616045_paypal.Designer.cs">
+      <DependentUpon>202005041616045_paypal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -398,6 +402,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202005022119525_initial.resx">
       <DependentUpon>202005022119525_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005041616045_paypal.resx">
+      <DependentUpon>202005041616045_paypal.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
