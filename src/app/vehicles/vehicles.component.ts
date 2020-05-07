@@ -114,7 +114,7 @@ export class VehiclesComponent implements OnInit {
       )
   }
 
-  onItemChange1(line){
+  onItemChange(line){
     
     //this.stopTimer();
     

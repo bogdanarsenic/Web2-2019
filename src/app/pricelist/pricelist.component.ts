@@ -18,11 +18,13 @@ export class PricelistComponent implements OnInit {
 
   paidFor=false;
 
+
   price:number;
   hourlyPrice:number;
   daylyPrice:number;
   monthlyPrice:number;
   yearlyPrice:number;
+  paypalPrice:number;
 
   buyButton:boolean;
   adminButton:boolean;
@@ -63,6 +65,7 @@ export class PricelistComponent implements OnInit {
   tickets:Array<any>;
 
   ticketsByUser:Array<any>;
+  paypalchecked: boolean;
 
   constructor(private serverService:ServicesService,private router:Router) 
   { 
@@ -83,49 +86,125 @@ export class PricelistComponent implements OnInit {
     this.showEditT=false;
     this.showEditM=false;
     this.showEditY=false;
+    this.paypalchecked=false;
     this.status="";
     this.p=new PriceList();
     this.getUserDetails();
     this.getPricelist();
-
-    
-
     
   }
 
   onPayPal()
   {
-    paypal.Buttons({
-      createOrder:(data,actions)=>
-      {
-        return actions.order.create(
-          {
-            purchase_units:[
-              {
-                description:"Buy ticket" ,
-                amount:{
-                  currency_code:'USD',
-                  value:this.ticket.Price/100
+
+    paypal
+      .Buttons({
+        style: {
+          size: 'small',
+          color: 'gold',
+          shape: 'pill',
+          label: 'checkout',
+         },
+        createOrder: (data, actions) => {
+          return actions.order.create({
+
+            purchase_units: [
+             
+              
+              {                
+                amount: {
+                  value: this.paypalPrice/100,
+                  currency_code: 'USD'
+
                 }
               }
             ]
-          }
-        );
-      },
-      onApprove: async(data,actions)=>
-      {
-        const order=await actions.order.capture();
-        this.paidFor=true;
-        console.log(order);
-      },
-      onError: err=>
-      {
-        console.log(err);
-      }
-    }
+          
+          });
+        },
 
-      ).render(this.paypalElement.nativeElement);
+       
+
+        onApprove: async (data, actions) => {
+          const order = await actions.order.capture();
+          var id = this.user.Email.split('@')[0];
+          this.ticket.UserId = id;
+          this.ticket.IsValid = true;
+          this.ticket.OrderID = data.orderID;
+          this.ticket.PayerID = data.payerID;
+          this.serverService.postTicket(this.ticket)
+        .subscribe(
+          data => {
+            console.log("Kupljena karta!!");              
+          },
+          error => {
+            console.log(error);
+          }
+        )
+          console.log(order);
+        },
+        onError: err => {
+          console.log(err);
+        }
+      }) 
+      
+      .render(this.paypalElement.nativeElement);
   }
+
+  paypalHour()
+  {
+      this.ticket=new Ticket();
+      this.ticket.TicketType="Temporal";
+      this.ticket.Price=this.priceTemporal;
+      this.paypalPrice=this.priceTemporal;
+
+      if(!this.paypalchecked)
+        {
+          this.paypalchecked=true;
+          this.onPayPal();
+        }      
+  }
+
+  paypalDay()
+  {
+      this.ticket=new Ticket();
+      this.ticket.TicketType="Day";
+      this.ticket.Price=this.priceDay;
+      this.paypalPrice=this.priceDay;
+      if(!this.paypalchecked)
+        {
+          this.paypalchecked=true;
+          this.onPayPal();
+        }  
+  }
+
+  paypalMonth()
+  {
+    this.ticket=new Ticket();
+    this.ticket.TicketType="Month";
+    this.ticket.Price=this.priceMonth;
+    this.paypalPrice=this.priceMonth;
+
+    if(!this.paypalchecked)
+        {
+          this.paypalchecked=true;
+          this.onPayPal();
+        }  
+  }
+
+  paypalYear()
+  {
+      this.ticket=new Ticket();
+      this.ticket.TicketType="Year";
+      this.ticket.Price=this.priceYear;
+      this.paypalPrice=this.priceYear;
+      if(!this.paypalchecked)
+        {
+          this.paypalchecked=true;
+          this.onPayPal();
+        }  
+  }
+  
 
   getUserDetails() : any {
     this.serverService.getUser()

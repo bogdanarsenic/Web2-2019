@@ -167,7 +167,8 @@
                                 <div *ngIf="buyButton">
                                         <a class="btn btn-lg btn-block btn-danger" style="color:#f4f4f4" (click)="BuyYear()">BUY</a>
                                 </div>
-        
+
+
                                  <div *ngIf="showEditY">
                                          <input type="number" #param>
                                          <div>
@@ -186,6 +187,24 @@
                  </form>
           </div>
 
+          <div *ngIf="buyButton" class="payPal">
+                        <h4> Or buy it <i> safer </i> way with <span style="color:gold">PayPal</span>: </h4>
+                                 <label style="color:#f4f4f4;margin-left:10px">
+                                        <input type="radio" style="margin-right:5px" name="paypalButtons" (click)="paypalHour()">Temporal
+                                 </label>
+                                <label  style="color:#f4f4f4; margin-left:20px">
+                                       <input type="radio" style="margin-right:5px" name="paypalButtons" (click)="paypalDay()">Day
+                                </label>
+                                <label  style="color:#f4f4f4; margin-left:20px">
+                                       <input type="radio" style="margin-right:5px"  name="paypalButtons" (click)="paypalMonth()">Month
+                                </label>
+                               <label  style="color:#f4f4f4; margin-left:20px">
+                                      <input type="radio" style="margin-right:5px"  name="paypalButtons" (click)="paypalYear()">Year
+                               </label>
+           </div>
+
+           <div [hidden]="!paypalchecked" #paypal style="margin-left: 250px;width:300px;height:150px"></div>
+
           <div *ngIf="isActive()">
                 <a class="btn btn-primary" style="margin-top: 20px; margin-left:330px; color:#f4f4f4;" (click)="showTickets()">Show my tickets</a>
           </div>
@@ -193,14 +212,6 @@
           
         </div>
 
-        <div *ngIf="isActive()">
-
-
-        </div>
-
-        <div #paypal>
-
-        </div>
         <div *ngIf="buttonTicket">
         <table class="table table-striped table-dark">
                 <thead>

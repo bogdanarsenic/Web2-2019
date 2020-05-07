@@ -11,9 +11,14 @@ h3 {
     text-align:center;
 }
 
+h4 {
+    margin-top: 10px;
+    color: #f4f4f4;
+    text-align:center;
+}
+
 .main{
     width:100%;
-    background-color: cadetblue;
 }
 
 .divp   {
@@ -38,12 +43,19 @@ h3 {
     width: 70%;
     height: 800px;
     align-content: center;
-    background-color: cadetblue;
-
     float:left;
     
 
 
+}
+
+.payPal{
+    background-color:#1f4068;
+    text-align:center;
+    height:70px;
+    width:500px;
+    margin-left:150px;
+    margin-top:25px;
 }
 
 .hour
